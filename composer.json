@@ -1,5 +1,5 @@
 {
-    "name": "nullcall/google_map_api",
+    "name": "nullcall/geo-api",
     "type": "library",
     "description": "Easy Implementation of Google MAP various API in PHP.",
     "keywords": ["google Map","direction api","distance api","gps to address"],
@@ -13,8 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "nullcall/google_map_api" : "1.*"
+        "php": ">=5.4.0"
         },
     "autoload": {
         "psr-4": {

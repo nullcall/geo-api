@@ -56,6 +56,26 @@ class GoogleAPI {
 		$this->bearingAngle  = (rad2deg(atan2($dLon, $dPhi)) + 360) % 360;
 		return $this->getCompassDirection();
 	}
+    
+//// Fetch Heading Angle from given lat long ///////////
+	public function getDirectionAngle() {
+		//difference in longitudinal coordinates
+		$dLon = deg2rad($this->directionLong2) - deg2rad($this->directionLong1);
+		//difference in the phi of latitudinal coordinates
+		$dPhi = log(tan(deg2rad($this->directionLat2) / 2 + pi() / 4) / tan(deg2rad($this->directionLat1) / 2 + pi() / 4));
+		//we need to recalculate $dLon if it is greater than pi
+		if(abs($dLon) > pi()) {
+			if($dLon > 0) {
+				$dLon = (2 * pi() - $dLon) * -1;
+				}
+		else {
+			$dLon = 2 * pi() + $dLon;
+			}
+		}
+		//return the angle, normalized
+		return $this->bearingAngle  = (rad2deg(atan2($dLon, $dPhi)) + 360) % 360;
+	}
+	
 	private function getCompassDirection() {
 	   $tmp = round($this->bearingAngle / 45);
 	   switch($tmp) {
@@ -146,6 +166,11 @@ class MapAPI {
 		return  $g;
 	}
 	public static function setDirection($coArray){
+		$g = new GoogleAPI();
+		$g->setDirectionCo($coArray);
+		return  $g;
+	}
+	public static function setHeadingAngle($coArray){
 		$g = new GoogleAPI();
 		$g->setDirectionCo($coArray);
 		return  $g;

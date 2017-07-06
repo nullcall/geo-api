@@ -28,3 +28,6 @@ include "vendor/autoload.php";
 /// Call Object to for direction API
 	$direction = MapAPI::setDirection($coDis);
 	print_r($direction->getDirection());
+/// Call Object to for direction API
+	$direction = MapAPI::setDirection($coDis);
+	print_r($direction->getDirectionAngle());

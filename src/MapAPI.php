@@ -118,7 +118,7 @@ class GoogleAPI {
 	        $this->distLong[] =$row['long'];
     	}
     	//// Get the Leangth of passed array //////
-    	$num = sizeof($this->coordinatesArray);
+    	$num = sizeof($this->coordinatesArray) - 1; // Fixed the Undfined offset error : offset = sizeofArray - 1
 	    for($i=0;$i<$num;$i++){
 	    	if($this->distLat[$i+1] != '' and $this->distLong[$i+1] != '') {
 	            $distance[]=$this->distance($this->distLat[$i],$this->distLong[$i],$this->distLat[$i+1],$this->distLong[$i+1],$this->unit);
